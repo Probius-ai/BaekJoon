@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class MyCalculatorMethod {
+    public static float Calculate(float firstNumber, String operator, float secondNumber) {
+        float result = 0;
+        switch (operator) {
+            case "+":
+                result = firstNumber + secondNumber;
+                return result;
+            case "-":
+                result = firstNumber - secondNumber;
+                return result;
+            case "*":
+                result = firstNumber * secondNumber;
+                return result;
+            case "/":
+                if (secondNumber != 0) {
+                    result = firstNumber / secondNumber;
+                    return result;
+                } else {
+                    System.out.println("0으로 나눌 수 없습니다.");
+                    return Float.NaN;
+                }
+            default:
+                System.out.println("올바르지 않은 기호입니다. 사칙연산 기호('+', '-', '*', '/')만 입력해주세요.");
+                return Float.NaN;
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("계산할 사칙연산 식을 입력해주세요: ");
+        
+        float firstNumber = scanner.nextFloat();
+        String operator = scanner.next();
+        float secondNumber = scanner.nextFloat();
+        
+        float result = Calculate(firstNumber, operator, secondNumber);
+        if (result!=Float.NaN)
+        	System.out.printf("%.2f %s %.2f = %.2f\n", firstNumber, operator, secondNumber, result);
+        
+        scanner.close();
+    }
+}
