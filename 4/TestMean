@@ -1,0 +1,13 @@
+N = int(input())
+scores = list(map(int, input().split()))
+
+# 최대 점수를 찾기
+max_score = max(scores)
+
+# 점수 조정
+adjusted_scores = [(score / max_score) * 100 for score in scores]
+
+# 평균 계산
+average = sum(adjusted_scores) / N
+
+print(average)
