@@ -3,4 +3,7 @@
 if (result == int(result)) // Simple Code for checking if result is integer
 
 
-.equals() // check if the data is equal to the data that is designated
+.equals(x) // check if the data is equal to the data that is designated
+
+
+.isNaN(x) // check if data x is NaN
