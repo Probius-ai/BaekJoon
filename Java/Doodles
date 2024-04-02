@@ -1,3 +1,6 @@
 ## this is a space for java codes that i think it is useful
 
 if (result == int(result)) // Simple Code for checking if result is integer
+
+
+.equals() // check if the data is equal to the data that is designated
