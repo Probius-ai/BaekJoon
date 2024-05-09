@@ -13,10 +13,6 @@ for i in range(len(N)-1):
     else:
         direction = 0
 
-match direction:
-     case 0:
-          print("mixed") 
-     case 1:
-          print("ascending")
-     case -1:
-          print("descending")
+if direction == 0: print("mixed")
+elif direction == 1: print("ascending")
+elif direction == -1: print("descending")
