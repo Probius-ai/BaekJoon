@@ -1,35 +1,38 @@
-package Java;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-/**
- * Q11660
- */
 public class Q11660 {
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-        StringBuilder sb = new StringBuilder();
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        int qNum = Integer.parseInt(st.nextToken());
 
-        int[][] arr = new int[n+1][n+1];
-
-        st = new StringTokenizer(br.readLine(), " ");
+        long arr[][] = new long[n+1][n+1];
         for (int i = 1; i <= n; i++) {
-            arr[i] = arr[i-1] + Integer.parseInt(st.nextToken());
+            st = new StringTokenizer(br.readLine());
+            for (int j = 1; j <= n; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
+            }
         }
 
-        for (int i = 0; i < m; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-            sb.append(arr[end] - arr[start-1]).append("\n");
+        long sumArr[][] = new long[n+1][n+1];
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                sumArr[i][j] = sumArr[i - 1][j] + sumArr[i][j - 1] - sumArr[i - 1][j - 1] + arr[i][j];
+            }
         }
-        System.out.println(sb);
+
+        for (int i = 0; i < qNum; i++) {
+            st = new StringTokenizer(br.readLine());
+            int startIdx = Integer.parseInt(st.nextToken());
+            int startIdy = Integer.parseInt(st.nextToken());
+            int endIdx = Integer.parseInt(st.nextToken());
+            int endIdy = Integer.parseInt(st.nextToken());
+            System.out.println(sumArr[endIdx][endIdy] - sumArr[startIdx-1][endIdy] - sumArr[endIdx][startIdy-1] + sumArr[startIdx-1][startIdy-1]);
+        }
     }
 }
