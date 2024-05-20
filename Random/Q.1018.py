@@ -1,8 +1,10 @@
 N,M = map(int, input().split())
 
 chess=[]
-for _ in range(M):
+for _ in range(N):
     chess.append(input())
+
+min_chan = float('inf')
 
 for i in range(N-7):
     for j in range(M-7):
@@ -22,6 +24,6 @@ for i in range(N-7):
                     else:
                         White +=1
 
-        min_chan = min(Black,White)
+        min_chan = min(min_chan,Black,White)
 
 print(min_chan)
