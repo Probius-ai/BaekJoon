@@ -1,5 +1,7 @@
 package Java;
 
+import Java.LastExam.Shape;
+
 class Shape{
     String name; //멤버 변수
     Shape(String name){ //생성자
