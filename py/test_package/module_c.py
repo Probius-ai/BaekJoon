@@ -1,0 +1,1 @@
+variable_c = "c 모듈의 변수"
