@@ -6,7 +6,7 @@ package LibraryApplication;
 public class LibraryApplication {
     private Library library;
     
-    public LibraryApplication() {
+    public LibraryApplication() { // 생성자
         this.library = new Library();
     }
     
@@ -43,9 +43,13 @@ public class LibraryApplication {
     
     // 도서 반납
     public boolean returnBook(Book book) {
+        if (!book.isOnLoan()) {  // 대출 중이 아닌 경우
+            return false;
+        }
+        
         for (Loan loan : library.getLoans()) {
-            if (loan.getBook().equals(book) && !loan.isReturned()) {
-                loan.setReturned(true);
+            if (loan.getBook().equals(book)) {
+                book.setCurrentLoan(null);  // Book의 대출 상태만 초기화
                 return true;
             }
         }
@@ -54,17 +58,35 @@ public class LibraryApplication {
     
     // 대출 가능한 도서 목록 표시
     public void displayAvailableBooks() {
+        System.out.println("=== 대출 가능한 도서 목록 ===");
+        boolean hasAvailableBooks = false;
+        
         for (Book book : library.getBooks()) {
-            boolean isAvailable = true;
-            for (Loan loan : library.getLoans()) {
-                if (loan.getBook().equals(book) && !loan.isReturned()) {
-                    isAvailable = false;
-                    break;
-                }
-            }
-            if (isAvailable) {
+            if (!book.isOnLoan()) {  // returnBook() 메소드와 동일한 방식으로 확인
                 System.out.println(book.toString());
+                hasAvailableBooks = true;
             }
+        }
+        
+        if (!hasAvailableBooks) {
+            System.out.println("현재 대출 가능한 도서가 없습니다.");
+        }
+    }
+
+    // 대출중인 도서 목록 표시
+    public void displayBorrowedBooks() {
+        System.out.println("=== 대출중인 도서 목록 ===");
+        boolean hasBorrowedBooks = false;
+
+        for (Book book : library.getBooks()) {
+            if (book.isOnLoan()) {
+                System.out.println(book.toString());
+                hasBorrowedBooks = true;
+            }
+        }
+
+        if (!hasBorrowedBooks) {
+            System.out.println("현재 대출중인 도서가 없습니다.");
         }
     }
 }

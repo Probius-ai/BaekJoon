@@ -6,7 +6,6 @@ public class Loan {
     // 추후 구현 예정: 대출 날짜와 반납 예정일 필드
     // private String loanDate;
     // private String dueDate;
-    private boolean isReturned;
     
     // 생성자
     public Loan(Book book, Borrower borrower, String loanDate, String dueDate) {
@@ -15,7 +14,6 @@ public class Loan {
         // 추후 구현 예정: 대출 날짜와 반납 예정일 설정
         // this.loanDate = loanDate;
         // this.dueDate = dueDate;
-        this.isReturned = false;
     }
     
     // Getter와 Setter 메소드들
@@ -40,12 +38,4 @@ public class Loan {
      *     return dueDate;
      * }
      */
-    
-    public boolean isReturned() {
-        return isReturned;
-    }
-    
-    public void setReturned(boolean returned) {
-        isReturned = returned;
-    }
 }
