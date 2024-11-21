@@ -1,6 +1,27 @@
 def solution(mats, park):
-    answer = 0
-    return answer
+    n = len(park)
+    m = len(park[0])
+    
+    dp = [[0]*m for _ in range(n)]
+    max_size = 0
+    
+    for i in range(n):
+        for j in range(m):
+            if park[i][j] != '-1':
+                if i == 0 or j == 0:
+                    dp[i][j] = 1
+                else:
+                    if park[i][j] == park[i-1][j] == park[i][j-1] == park[i-1][j-1]:
+                        dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
+                    else:
+                        dp[i][j] = 1
+                max_size = max(max_size, dp[i][j])
+    
+    for mat in sorted(mats, reverse=True):
+        if mat <= max_size:
+            return mat
+    
+    return -1
 
 """
 동적 프로그래밍(DP) 접근 방식
