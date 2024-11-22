@@ -4,40 +4,40 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Library {
-    private TreeSet<Book> books;
-    private ArrayList<Borrower> borrowers;
-    private ArrayList<Loan> loans;
+    private TreeSet<Book> booksCollection;
+    private ArrayList<Borrower> borrowersCollection;
+    private ArrayList<Loan> loansCollection;
     
     public Library() { // 생성자
-        books = new TreeSet<>();
-        borrowers = new ArrayList<>();
-        loans = new ArrayList<>();
+        booksCollection = new TreeSet<>();
+        borrowersCollection = new ArrayList<>();
+        loansCollection = new ArrayList<>();
     }
     
     // getter
     public TreeSet<Book> getBooks() { // 도서 목록 반환
-        return books;
+        return booksCollection;
     }
     
     public ArrayList<Borrower> getBorrowers() { // 대출자 목록 반환
-        return borrowers;
+        return borrowersCollection;
     }
     
     public ArrayList<Loan> getLoans() { // 대출 목록 반환
-        return loans;
+        return loansCollection;
     }
     
     // 도서 관리 메소드
     public boolean addBook(Book book) { // 도서 추가
-        return books.add(book);
+        return booksCollection.add(book);
     }
     
     public boolean removeBook(Book book) { // 도서 삭제
-        return books.remove(book);
+        return booksCollection.remove(book);
     }
     
     public Book findBookByCatalogueNumber(int catalogueNumber) { // 도서 찾기
-        for (Book book : books) {
+        for (Book book : booksCollection) {
             if (book.getCatalogueNumber() == catalogueNumber) {
                 return book;
             }
@@ -47,15 +47,15 @@ public class Library {
     
     // 대출자 관리 메소드
     public boolean addBorrower(Borrower borrower) { // 대출자 추가
-        return borrowers.add(borrower);
+        return borrowersCollection.add(borrower);
     }
     
     public boolean removeBorrower(Borrower borrower) { // 대출자 삭제
-        return borrowers.remove(borrower);
+        return borrowersCollection.remove(borrower);
     }
     
     public Borrower findBorrowerByName(String name) { // 대출자 찾기
-        for (Borrower borrower : borrowers) {
+        for (Borrower borrower : borrowersCollection) {
             if (borrower.getName().equals(name)) {
                 return borrower;
             }
@@ -65,6 +65,6 @@ public class Library {
     
     // 대출 관리 메소드
     public boolean addLoan(Loan loan) { // 대출 추가
-        return loans.add(loan);
+        return loansCollection.add(loan);
     }
 }
