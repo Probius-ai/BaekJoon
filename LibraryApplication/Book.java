@@ -26,19 +26,6 @@ class Book implements Comparable<Book> {
         return catalogueNumber;
     }
     
-    // Setters
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-    
-    public void setCatalogueNumber(int catalogueNumber) {
-        this.catalogueNumber = catalogueNumber;
-    }
-    
     // 대출 상태 확인 메소드
     public boolean isOnLoan() {
         return currentLoan != null;

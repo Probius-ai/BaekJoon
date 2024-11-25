@@ -1,17 +1,20 @@
 package LibraryApplication;
 
-import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.LinkedList;
+import java.util.HashSet;
 
 public class Library {
     private TreeSet<Book> booksCollection;
-    private ArrayList<Borrower> borrowersCollection;
-    private ArrayList<Loan> loansCollection;
+    private HashSet<Borrower> borrowersCollection;
+    private LinkedList<Loan> loansCollection;
+    private LoanHistory loanHistory;
     
     public Library() { // 생성자
         booksCollection = new TreeSet<>();
-        borrowersCollection = new ArrayList<>();
-        loansCollection = new ArrayList<>();
+        borrowersCollection = new HashSet<>();
+        loansCollection = new LinkedList<>();
+        loanHistory = new LoanHistory();
     }
     
     // getter
@@ -19,11 +22,11 @@ public class Library {
         return booksCollection;
     }
     
-    public ArrayList<Borrower> getBorrowers() { // 대출자 목록 반환
+    public HashSet<Borrower> getBorrowers() { // 대출자 목록 반환
         return borrowersCollection;
     }
     
-    public ArrayList<Loan> getLoans() { // 대출 목록 반환
+    public LinkedList<Loan> getLoans() { // 대출 목록 반환
         return loansCollection;
     }
     
@@ -65,6 +68,27 @@ public class Library {
     
     // 대출 관리 메소드
     public boolean addLoan(Loan loan) { // 대출 추가
-        return loansCollection.add(loan);
+        if (loansCollection.add(loan)) {
+            loanHistory.addLoanRecord(loan);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean removeLoan(Loan loan) {
+        return loansCollection.remove(loan);
+    }
+    
+    public Loan findLoanByBook(Book book) {
+        for (Loan loan : loansCollection) {
+            if (loan.getBook().equals(book)) {
+                return loan;
+            }
+        }
+        return null;
+    }
+    
+    public LoanHistory getLoanHistory() {
+        return loanHistory;
     }
 }
